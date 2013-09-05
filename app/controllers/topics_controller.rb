@@ -1,5 +1,9 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :find_forum, :set_topic, only: [:show, :edit, :update, :destroy]
+
+  def find_forum
+    @forum = Forum.find(params[:forum_id])
+  end
 
   # GET /topics
   def index
@@ -13,6 +17,8 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
     @topic = Topic.new
+    @topic = @forum.topics.build
+    @post = @topic.posts.build
   end
 
   # GET /topics/1/edit
@@ -21,6 +27,7 @@ class TopicsController < ApplicationController
 
   # POST /topics
   def create
+    @topic = @forum.topics.build(params)
     @topic = Topic.new(topic_params)
 
     if @topic.save
@@ -53,6 +60,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:name, :last_poster_id, :last_poster_at)
+      params.require(:topic).permit(:name, :last_poster_id, :last_poster_at, :posts_attributes => [:id, :content])
     end
 end

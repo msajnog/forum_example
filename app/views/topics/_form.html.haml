@@ -12,5 +12,6 @@
     %br
     = f.text_field :name
   %p
-    %textarea{:cols => "80", :name => "post[content]", :rows => "20"}= @post.content
+    - f.fields_for :post do |p|
+      = p.text_area :content
   %p= f.submit "Create"
