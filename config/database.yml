@@ -1,0 +1,22 @@
+development:
+  adapter: postgresql
+  database: forum_example_dev
+  username: 'postgres'
+  password: 'html5isgreat'
+  host: localhost
+
+test:
+  adapter: postgresql
+  database: forum_example_test
+  username: 'postgres'
+  password: 'html5isgreat'
+  host: localhost
+
+production:
+  adapter: postgresql
+  database: forum_example_prod
+  username: 'postgres'
+  password: 'html5isgreat'
+  host: localhost
+
+

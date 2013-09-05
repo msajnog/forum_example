@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @topic.name
+%p
+  %b Last poster:
+  = @topic.last_poster_id
+%p
+  %b Last poster at:
+  = @topic.last_poster_at
+
+= link_to 'Edit', edit_topic_path(@topic)
+\|
+= link_to 'Back', topics_path

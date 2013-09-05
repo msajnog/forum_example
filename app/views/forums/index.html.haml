@@ -1,0 +1,44 @@
+-#%h1 Listing forums
+-#
+-#%table
+-#  %tr
+-#    %th Name
+-#    %th Description
+-#    %th
+-#    %th
+-#    %th
+-#
+-#  - @forums.each do |forum|
+-#    %tr
+-#      %td= forum.name
+-#      %td= forum.description
+-#      %td= link_to 'Show', forum
+-#      %td= link_to 'Edit', edit_forum_path(forum)
+-#      %td= link_to 'Destroy', forum, :method => :delete, :data => { :confirm => 'Are you sure?' }
+-#
+-#%br
+-#
+-#= link_to 'New Forum', new_forum_path
+
+
+%h1 Listing forums
+-#- title "Forums"
+
+%table
+  %tr
+    %th{ width: "70%"} Forum
+    %th{ width: "30%"} Last Post
+  - for forum in @forums
+    %tr
+      %td
+        %h4= link_to h(forum.name), forum_path(forum.id)
+        %small
+          = forum.topics.count
+          topics
+        %br
+        = h forum.description
+      %td.right
+      %td= link_to "Show", forum
+      %td= link_to "Edit", edit_forum_path(forum)
+      %td= link_to "Destroy", forum, :confirm => 'Are you sure?', :method => :delete
+%p= link_to "New Forum", new_forum_path
